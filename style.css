@@ -4,8 +4,8 @@
   --surface: #141916;
   --surface-2: #1B221E;
   --line: #2A332E;
-  --text: #161B18;   /* deliberately near the background: text is unreadable on purpose */
-  --muted: #141916;
+  --text: #F2F5F1;
+  --muted: #9AA59E;
   --green: #8BFF5A;   /* main highlight, lose */
   --amber: #FFB547;   /* gain */
   --danger: #FF7A6B;
