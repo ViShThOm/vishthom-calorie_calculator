@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create Invoice | Shalini</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-nav">
+    <a class="brand" href="index.html">Shalini</a>
+    <nav aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="calculator.html">Calorie calculator</a>
+      <a href="invoice.html" aria-current="page">Invoice</a>
+    </nav>
+  </header>
+
+  <main class="invoice-page">
+    <header class="intro">
+      <h1>Create an invoice</h1>
+      <p>Fill in the client's details and the services, then create the invoice and download it as a PDF.</p>
+    </header>
+
+    <form id="invoice-form" class="form" novalidate>
+      <fieldset class="group">
+        <legend>Client details</legend>
+        <div class="grid-2">
+          <label class="field">
+            <span class="field-name">Full name</span>
+            <span class="box"><input name="client" required autocomplete="name"></span>
+          </label>
+          <label class="field">
+            <span class="field-name">Email</span>
+            <span class="box"><input type="email" name="email" required autocomplete="email"></span>
+          </label>
+          <label class="field">
+            <span class="field-name">Phone <small>(optional)</small></span>
+            <span class="box"><input type="tel" name="phone" autocomplete="tel"></span>
+          </label>
+          <label class="field">
+            <span class="field-name">Invoice date</span>
+            <span class="box"><input type="date" name="date" required></span>
+          </label>
+          <label class="field span-2">
+            <span class="field-name">Address <small>(optional)</small></span>
+            <span class="box"><textarea name="address" rows="2" autocomplete="street-address"></textarea></span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Services</legend>
+        <div class="items-head" aria-hidden="true"><span>Description</span><span>Qty</span><span>Price (&#8377;)</span><span></span></div>
+        <div id="items"></div>
+        <button type="button" class="btn btn-secondary btn-small" id="add-item">Add item</button>
+      </fieldset>
+
+      <div class="grid-2">
+        <label class="field">
+          <span class="field-name">Tax (%) <small>(optional)</small></span>
+          <span class="box"><input type="number" name="tax" min="0" max="100" step="0.01" value="0"></span>
+        </label>
+      </div>
+
+      <label class="field">
+        <span class="field-name">Notes <small>(optional)</small></span>
+        <span class="box"><textarea name="notes" rows="2" placeholder="For example: Payment due within 7 days"></textarea></span>
+      </label>
+
+      <p class="error" id="error" role="alert"></p>
+      <div><button class="btn btn-primary" type="submit">Create invoice</button></div>
+    </form>
+
+    <section class="invoice-output" id="output" hidden aria-labelledby="output-title">
+      <div class="output-bar">
+        <h2 id="output-title" tabindex="-1">Your invoice</h2>
+        <button type="button" class="btn btn-primary" id="download">Download PDF</button>
+      </div>
+
+      <article class="invoice" id="invoice">
+        <header class="inv-head">
+          <div>
+            <p class="inv-brand">Shalini</p>
+            <p>Weight-loss coaching</p>
+            <!-- Add Shalini's business address, phone and email here. -->
+          </div>
+          <div class="inv-meta">
+            <h3>Invoice</h3>
+            <p>No. <span id="inv-no"></span></p>
+            <p>Date: <span id="inv-date"></span></p>
+          </div>
+        </header>
+
+        <div class="inv-to">
+          <p class="inv-label">Bill to</p>
+          <p class="inv-strong" id="inv-client"></p>
+          <p class="pre" id="inv-address"></p>
+          <p id="inv-email"></p>
+          <p id="inv-phone"></p>
+        </div>
+
+        <table class="inv-table">
+          <thead><tr><th>Description</th><th>Qty</th><th>Price</th><th>Amount</th></tr></thead>
+          <tbody id="inv-rows"></tbody>
+        </table>
+
+        <dl class="inv-totals">
+          <div><dt>Subtotal</dt><dd id="inv-sub"></dd></div>
+          <div id="inv-tax-row"><dt id="inv-tax-label">Tax</dt><dd id="inv-tax"></dd></div>
+          <div class="inv-total"><dt>Total</dt><dd id="inv-total"></dd></div>
+        </dl>
+
+        <p class="inv-notes pre" id="inv-notes"></p>
+        <p class="inv-thanks">Thank you for coaching with Shalini.</p>
+      </article>
+    </section>
+  </main>
+
+  <template id="item-row">
+    <div class="item-row">
+      <span class="box"><input name="desc" aria-label="Description" placeholder="For example: 12-week coaching plan"></span>
+      <span class="box"><input name="qty" type="number" min="1" step="1" value="1" aria-label="Quantity"></span>
+      <span class="box"><input name="price" type="number" min="0" step="0.01" placeholder="0" aria-label="Price in rupees"></span>
+      <button type="button" class="remove" aria-label="Remove item">&times;</button>
+    </div>
+  </template>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="invoice.js"></script>
+</body>
+</html>
