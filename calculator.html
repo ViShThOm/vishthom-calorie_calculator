@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calorie Calculator | Shalini</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-nav">
+    <a class="brand" href="index.html">Shalini</a>
+    <nav aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="calculator.html" aria-current="page">Calorie calculator</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <header class="intro">
+      <h1>How much should you eat each day?</h1>
+      <p>Enter a few details about yourself. Your calorie needs update as you type.</p>
+    </header>
+
+    <form id="form" class="form" novalidate>
+      <fieldset class="group">
+        <legend>Gender</legend>
+        <div class="segmented">
+          <label><input type="radio" name="gender" value="male" checked><span>Male</span></label>
+          <label><input type="radio" name="gender" value="female"><span>Female</span></label>
+        </div>
+      </fieldset>
+
+      <div class="trio">
+        <label class="field">
+          <span class="field-name">Age</span>
+          <span class="box"><input type="number" name="age" min="15" max="80" inputmode="numeric" placeholder="30"><span class="unit">years</span></span>
+        </label>
+        <label class="field">
+          <span class="field-name">Height</span>
+          <span class="box"><input type="number" name="height" min="100" max="250" inputmode="decimal" placeholder="170"><span class="unit">cm</span></span>
+        </label>
+        <label class="field">
+          <span class="field-name">Weight</span>
+          <span class="box"><input type="number" name="weight" min="30" max="300" step="0.1" inputmode="decimal" placeholder="70"><span class="unit">kg</span></span>
+        </label>
+      </div>
+
+      <fieldset class="group">
+        <legend>Activity level</legend>
+        <div class="activity">
+          <label><input type="radio" name="activity" value="1.2"><span><strong>Sedentary</strong><small>Desk job, little or no exercise</small></span></label>
+          <label><input type="radio" name="activity" value="1.375" checked><span><strong>Lightly active</strong><small>Exercise 1 to 3 days a week</small></span></label>
+          <label><input type="radio" name="activity" value="1.55"><span><strong>Moderately active</strong><small>Exercise 3 to 5 days a week</small></span></label>
+          <label><input type="radio" name="activity" value="1.725"><span><strong>Very active</strong><small>Hard exercise 6 to 7 days a week</small></span></label>
+          <label><input type="radio" name="activity" value="1.9"><span><strong>Extremely active</strong><small>Physical job plus daily training</small></span></label>
+        </div>
+      </fieldset>
+
+      <p class="error" id="error" role="alert"></p>
+    </form>
+
+    <aside class="facts is-empty" id="facts" aria-live="polite">
+      <h2>Calorie Facts</h2>
+      <p class="facts-for" id="summary">Fill in your age, height and weight to see your numbers.</p>
+      <div class="rule rule-heavy"></div>
+      <p class="facts-small">Calories per day</p>
+      <div class="maintain">
+        <span>To maintain weight</span>
+        <strong id="maintain">&ndash;</strong>
+      </div>
+      <div class="rule rule-mid"></div>
+      <div class="row row-lose">
+        <span><b>To lose weight</b><small>About 0.5 kg per week</small></span>
+        <strong id="lose">&ndash;</strong>
+      </div>
+      <div class="row row-gain">
+        <span><b>To gain weight</b><small>About 0.5 kg per week</small></span>
+        <strong id="gain">&ndash;</strong>
+      </div>
+      <div class="rule rule-heavy"></div>
+      <div class="row row-quiet">
+        <span>Calories your body burns at rest</span>
+        <span id="bmr">&ndash;</span>
+      </div>
+      <p class="note" id="note" hidden></p>
+      <p class="footnote">Estimates use the Mifflin-St Jeor equation. Everyone's body is different, so treat these as a starting point and adjust based on how your weight changes over a few weeks.</p>
+    </aside>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
